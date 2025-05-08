@@ -1,6 +1,7 @@
 # AI-Based Task Manager Agent 🤖📝
 
-**Live Application:** [https://ai-based-task-manager-agent.streamlit.app/](https://ai-based-task-manager-agent.streamlit.app/)
+**Live Application:** [https://ai-based-task-manager-agent.streamlit.app/](https://ai-based-task-manager-agent.streamlit.app/) 
+*(Deployed on Streamlit Community Cloud)*
 
 ---
 
@@ -19,9 +20,9 @@ This application leverages the power of Large Language Models (LLMs) through Goo
 *   **Contextual Follow-up:** The agent remembers the last task you interacted with, allowing for intuitive follow-up commands like "Mark it as done" or "Cancel that meeting."
 *   **Due Date & Time Parsing:** Understands relative dates ("tomorrow", "next Friday") and specific times ("at 3pm", "by 17:00").
 *   **User-Specific Task Management:** Tasks are tied to your email, ensuring privacy and personal organization.
-*   **SQLite Database Backend:** Tasks are stored persistently (within the limits of the deployment environment) in a local SQLite database.
+*   **SQLite Database Backend:** Tasks are stored in a local SQLite database, managed within the application environment.
 *   **Streamlit Interface:** A user-friendly web interface for easy interaction.
-*   **Secure Login:** Email validation ensures a basic level of user identification (requires `.com` emails for this demo).
+*   **Secure Login:** Email validation ensures a basic level of user identification.
 
 ---
 
@@ -51,18 +52,9 @@ The application is organized into the following key Python files:
 *   `app.py`: The main Streamlit application. Handles user interface, login, session management, and orchestrates calls to the LLM handler and database modules.
 *   `llm_handler.py`: Manages all interactions with the Google Generative AI model. Contains prompt templates for SQL generation and result summarization, and functions to invoke the LLM.
 *   `database.py`: Handles all direct SQLite database operations. Includes functions for creating the database and table, executing DML (Data Manipulation Language) and SELECT queries, and fetching specific task details.
-*   `Dockerfile`: Defines the container environment for deploying the application on platforms like Hugging Face Spaces.
 *   `requirements.txt`: Lists all Python package dependencies.
-*   `.env` (local only, not in repo): Stores the `GOOGLE_API_KEY` for local development. For deployment, this key is managed as a secret in the hosting environment.
-*   `tasks.db` (created at runtime): The SQLite database file where task data is stored. *Note: On the current free-tier deployment, this database is ephemeral and data will be lost on application restarts.*
-
----
-
-## Limitations (Current Free Tier Deployment)
-
-*   **Ephemeral Data Storage:** The live application linked above is deployed on a free tier of Hugging Face Spaces. Due to the nature of free-tier ephemeral filesystems, **all task data entered will be lost when the application restarts or is redeployed.** This version is primarily for demonstration purposes. True data persistence would require a paid persistent storage solution or an external database.
-*   **LLM Imperfections:** While powerful, LLMs can sometimes misinterpret complex or ambiguous requests, potentially leading to incorrect SQL generation or unexpected behavior. Prompt engineering aims to minimize this, but it's an ongoing area of refinement.
-*   **Context Window:** The "memory" for follow-up commands is limited to the most recently interacted task.
+*   `.env` (local only, not in repo): Stores the `GOOGLE_API_KEY` for local development. For deployment, this key is managed as a secret in the Streamlit Community Cloud settings.
+*   `tasks.db` (created at runtime): The SQLite database file where task data is stored within the application's runtime environment.
 
 ---
 
