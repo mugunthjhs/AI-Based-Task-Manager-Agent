@@ -37,7 +37,7 @@ if "table_info" not in st.session_state or st.session_state.get("reload_table_in
 # --- UI Sections ---
 
 if not st.session_state.logged_in:
-    st.title("AI Task Manager Login")
+    st.title("AI Based Task Manager Login")
     with st.form("login_form"):
         name = st.text_input("Your Name", value=st.session_state.get("user_name_input", ""))
         email = st.text_input("Your Email", value=st.session_state.get("user_email_input", ""))
@@ -75,7 +75,7 @@ else:
         st.session_state.last_interacted_task_details = None
         st.rerun()
 
-    st.title(f"📝 AI Task Manager for {st.session_state.user_name}")
+    st.title(f"📝 AI Based Task Manager for {st.session_state.user_name}")
     st.markdown("Enter your task command (e.g., 'I have a meeting at 2pm on next Friday' , 'Show pending tasks').")
 
     if st.session_state.last_interacted_task_details:
